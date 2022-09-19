@@ -51,25 +51,6 @@ services:
         depends_on:
             - db
 
-    redis:
-        restart: always
-        image: "redis:alpine"
-
-    celery:
-        restart: always
-        build:
-            context: .
-            dockerfile: ./docker/backend/Dockerfile
-        entrypoint: /app/docker/backend/celery-entrypoint.prod.sh
-        volumes:
-            - .:/app      
-        env_file:
-        - ./.env.prod
-        depends_on:
-        - db
-        - backend
-        - redis
-
 volumes:
     static_volume: 
     postgres_data:

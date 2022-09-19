@@ -1,5 +1,4 @@
 django==4.0.6
-djangorestframework==3.13.1 
 django-filter==2.4.0
 django_cors_headers==3.13.0
 psycopg2-binary==2.9.3
@@ -9,10 +8,7 @@ isort[requirements]==4.3.21
 pylint==2.14.4
 watchdog[watchmedo]==0.10.3
 django-model-utils==4.2.0
-celery==5.2.7
-redis==4.3.4
 gunicorn==20.1.0
-djangorestframework-simplejwt==5.2.0
 funcy==1.17
 ipdb==0.13.9
 tzdata==2022.1
