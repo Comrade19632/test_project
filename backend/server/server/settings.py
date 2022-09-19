@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     #
     "corsheaders",
+    "apps.reverse_login"
     #
 ]
 
@@ -124,3 +125,6 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/djmedia/"
 MEDIA_ROOT = BASE_DIR / "mediafiles"
+
+TELPHIN_CLIENT_ID = os.environ.get("TELPHIN_CLIENT_ID", None)
+TELPHIN_CLIENT_SECRET = os.environ.get("TELPHIN_CLIENT_SECRET", None)

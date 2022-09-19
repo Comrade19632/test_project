@@ -6,4 +6,5 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/login/", include("apps.reverse_login.urls"), name="reverse_login"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
