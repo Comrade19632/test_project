@@ -2,6 +2,7 @@ import axios from 'axios'
 import { setAxiosAuthToken } from 'utils/Utils'
 
 const baseURL = 'https://apiproxy.telphin.ru/api/ver1.0/'
+const internalApiLoginUrl = (process.env.NODE_ENV === 'production') ? `${window.location.origin}/api/login/` : 'http://localhost/api/login/'
 
 const instance = axios.create({
   baseURL,
@@ -27,7 +28,8 @@ instance.interceptors.response.use((response) => response, (error) => {
   const originalRequest = error.config
 
   // eslint-disable-next-line no-underscore-dangle
-  if (error.response.status === 401 && !originalRequest._retry) {
+  if (error.response.status === 401 && !originalRequest._retry && 
+    !(window.location.href === (process.env.NODE_ENV === 'production') ? `${window.location.origin}/login` : 'http://localhost:3000/login')) {
 
     if (isRefreshing) {
       return new Promise((resolve, reject) => {
@@ -44,7 +46,7 @@ instance.interceptors.response.use((response) => response, (error) => {
 
     const refreshToken = window.localStorage.getItem('refreshToken')
     return new Promise((resolve, reject) => {
-      instance.post((process.env.NODE_ENV === 'production') ? `${window.location.origin}/api/` : 'http://localhost/api/'
+      instance.post(internalApiLoginUrl
         , { refresh: refreshToken })
         .then(({ data }) => {
           const { access_token: access, refresh_token: refresh } = data

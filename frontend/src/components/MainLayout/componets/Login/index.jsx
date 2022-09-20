@@ -1,7 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router'
-import { loginViaFrom } from 'redux/auth/actions'
+import { loginViaForm } from 'redux/auth/actions'
+import LoginForm from './components/LoginForm'
+import style from './index.module.sass'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -16,10 +18,12 @@ const Login = () => {
     return <Navigate to="/" replace />
   }
 
-  const handleLogin = (username, password) => dispatch(loginViaFrom(username, password))
+  const handleLogin = (username, password) => dispatch(loginViaForm(username, password))
 
   return (
-    <div>login</div>
+    <div className={style.container}>
+      <LoginForm handleLogin={handleLogin}/>
+    </div>
   )
 }
 

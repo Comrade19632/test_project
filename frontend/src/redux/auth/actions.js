@@ -42,9 +42,9 @@ export const logout = () => (dispatch) => {
   toast.success('Logout successful.')
 }
 
-export const loginViaFrom = (username, password) => (dispatch) => {
+export const loginViaForm = (username, password) => (dispatch) => {
   axios
-    .post((process.env.NODE_ENV === 'production') ? `${window.location.origin}/api/login` : 'http://localhost/api/login',
+    .post((process.env.NODE_ENV === 'production') ? `${window.location.origin}/api/login/` : 'http://localhost/api/login/',
       { username, password })
     .then((response) => {
       const { access_token: access, refresh_token: refresh } = response.data
