@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { setAxiosAuthToken } from 'utils/Utils'
 
-const baseURL = 'https://apiproxy.telphin.ru/'
+const baseURL = 'https://apiproxy.telphin.ru/api/ver1.0/'
 
 const instance = axios.create({
   baseURL,
