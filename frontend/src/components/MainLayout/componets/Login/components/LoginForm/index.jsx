@@ -1,10 +1,10 @@
 import React from 'react'
 import { Formik, Form, Field } from 'formik'
 import PropTypes from 'prop-types'
+import style from './index.module.sass'
 
 const LoginForm = ({handleLogin}) => (
-  <div>
-    <h1>Any place in your app!</h1>
+  <div className={style.form}>
     <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={({username, password}, { setSubmitting }) => {
@@ -14,10 +14,10 @@ const LoginForm = ({handleLogin}) => (
     >
       {({ isSubmitting }) => (
         <Form>
-          <Field type="username" name="username" />
-          <Field type="password" name="password" />
+          <Field type="username" name="username" placeholder="Логин"/>
+          <Field type="password" name="password" placeholder="Пароль"/>
           <button type="submit" disabled={isSubmitting}>
-            Submit
+            Войти
           </button>
         </Form>
       )}

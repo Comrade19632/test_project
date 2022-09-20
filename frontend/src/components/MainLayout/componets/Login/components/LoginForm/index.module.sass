@@ -1,0 +1,33 @@
+@import "components/variables"
+
+.form
+    padding: 20px
+    background: $white
+    border-radius: $border-radius
+    
+    form
+        display: flex
+        flex-direction: column
+
+        input
+            height: 48px
+            padding: 0 10px
+            margin: 10px
+            border-radius: $border-radius
+            border: 2px solid transparent
+            background: $gray
+            font-size: 15px
+            font-weight: 600
+            line-height: 1.6
+            color: $black
+            transition: all .2s
+            text-align: center
+
+        button
+            @extend input
+            cursor: pointer
+            background: #2A85FF
+            color: $white
+
+            &:hover
+                background: #166ad8
