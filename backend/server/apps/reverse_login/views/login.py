@@ -19,17 +19,30 @@ def login(request):
 
     request_body = loads(request.body)
 
-    username = request_body.get("username", "")
-    password = request_body.get("password", "")
+    if refresh := request_body.get("refresh", ""):
+        data = {
+            "grant_type": "refresh_token",
+            "client_id": settings.TELPHIN_CLIENT_ID,
+            "client_secret": settings.TELPHIN_CLIENT_SECRET,
+            "refresh_token": refresh,
+        }
 
-    data = {
-        "grant_type": "password",
-        "client_id": settings.TELPHIN_CLIENT_ID,
-        "client_secret": settings.TELPHIN_CLIENT_SECRET,
-        "username": username,
-        "password": password,
-    }
+        response = requests.post(url, headers=headers, data=data)
 
-    response = requests.post(url, headers=headers, data=data)
+        return HttpResponse(response.text, status=response.status_code)
 
-    return HttpResponse(response.text, status=response.status_code)
+    else:
+        username = request_body.get("username", "")
+        password = request_body.get("password", "")
+
+        data = {
+            "grant_type": "password",
+            "client_id": settings.TELPHIN_CLIENT_ID,
+            "client_secret": settings.TELPHIN_CLIENT_SECRET,
+            "username": username,
+            "password": password,
+        }
+
+        response = requests.post(url, headers=headers, data=data)
+
+        return HttpResponse(response.text, status=response.status_code)
