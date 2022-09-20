@@ -1,4 +1,4 @@
-import { applyMiddleware, combineReducers, configureStore } from 'redux'
+import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunkMiddleWare from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 // eslint-disable-next-line 
@@ -10,7 +10,7 @@ const reducers = combineReducers({
   auth: authReducer,
 })
 
-const store = configureStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleWare)))
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleWare)))
 
 if (!isEmpty(localStorage.getItem('accessToken')) && !isEmpty(localStorage.getItem('refreshToken'))) {
   store.dispatch(login(localStorage.getItem('accessToken'), localStorage.getItem('refreshToken')))
