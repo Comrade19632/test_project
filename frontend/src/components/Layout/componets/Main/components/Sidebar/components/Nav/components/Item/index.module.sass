@@ -1,0 +1,39 @@
+@import "components/variables"
+
+.item
+  position: relative
+  text-decoration: none
+  color: black
+  display: flex
+  align-items: center
+  height: 48px
+  border-radius: 12px
+  padding: 0 12px
+  margin-bottom: 8px
+  white-space: nowrap
+  font-family: 'Inter', sans-serif
+  font-size: 15px
+  font-weight: 600
+  line-height: 1.6
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  transition: background .2s, box-shadow .2s, color .2s
+
+  svg
+    height: 30px
+    width: 30px
+    margin-left: 10px
+    overflow: visible
+
+  &.active
+    background: $gray
+    box-shadow: inset 0px -2px 1px rgb(0 0 0 / 5%), inset 0px 1px 1px #ffffff
+
+  .name
+    opacity: 0
+    transition: transform .3s ease 0s,opacity .3s ease 0s,-webkit-transform .3s ease 0s
+
+    &.openedSidebar
+      opacity: 1
+      -webkit-transform: translate3d(+10px,0,0)
+      transform: translate3d(+10px,0,0)
+    
