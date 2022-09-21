@@ -1,6 +1,8 @@
+import Block from 'components/Block'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from 'redux/auth/actions'
+import style from './index.module.sass'
 
 const Profile = () => {
   const {
@@ -14,10 +16,10 @@ const Profile = () => {
   const logoutOnClick = () => dispatch(logout())
 
   return (
-    <div>
-      Hi, {user.login}
-      <button onClick={logoutOnClick} type='button'>Logout?</button>
-    </div>
+    <Block className={style.profile}>
+        Привет, {user.login}
+      <button className={style.button} onClick={logoutOnClick} type='button'>Выйти</button>
+    </Block>
   )
 }
 
