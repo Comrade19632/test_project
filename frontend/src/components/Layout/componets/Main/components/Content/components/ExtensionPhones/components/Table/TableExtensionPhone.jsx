@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import style from './index.module.sass'
+import ExpandIcon from './ButtonsIcons/ExpandIcon'
+import DeleteIcon from './ButtonsIcons/DeleteIcon'
 
 const TableExtensionPhone = ({
   status,
@@ -26,7 +28,9 @@ const TableExtensionPhone = ({
       {label}
     </div>
     <div className={`${style.flexRow} ${style.buttonsCol}`} role="cell">
-      кнопки
+      {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+      <a href='/' className={style.expand}><ExpandIcon /></a>
+      <div className={style.delete}><DeleteIcon /></div>
     </div>
   </div>
 )
