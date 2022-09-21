@@ -27,28 +27,16 @@
   &:last-child
     border: none
 
-.idCol
-  order: 1
-  width: 10%
-
-  @media screen and (max-width: $tablet)
-    box-sizing: border-box
-    width: 100%
-    order: 1
-    &:after
-      content: ' р.'
-
 .typeCol
-  order: 2
+  order: 1
   width: 20%
 
   @media screen and (max-width: $tablet)
     box-sizing: border-box
     width: 100%
-    order: 1
 
 .statusCol
-  order: 3
+  order: 2
   width: 20%
 
   .status
@@ -59,20 +47,26 @@
 
 
 .nameCol
+  order: 3
+  width: 20%
+
+  @media screen and (max-width: $tablet)
+    width: 100%
+
+.labelCol
   order: 4
   width: 20%
 
   @media screen and (max-width: $tablet)
     width: 100%
-    order: 6
 
-.labelCol
+.buttonsCol
   order: 5
-  width: 20%
+  width: 10%
 
   @media screen and (max-width: $tablet)
+    box-sizing: border-box
     width: 100%
-    order: 6
 
 .flexRow
   text-align: left

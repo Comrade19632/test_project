@@ -3,17 +3,12 @@ import PropTypes from 'prop-types'
 import style from './index.module.sass'
 
 const TableExtensionPhone = ({
-  id,
   status,
   type,
   name,
   label,
 }) => (
   <div className={style.flexTable} role="rowgroup">
-    <div className={`${style.flexRow} ${style.idCol}`} role="cell">
-      <span>Id: </span>
-      {id}
-    </div>
     <div className={`${style.flexRow} ${style.typeCol}`} role="cell">
       <span>Тип: </span>
       {type}
@@ -30,11 +25,13 @@ const TableExtensionPhone = ({
       <span>Название: </span>
       {label}
     </div>
+    <div className={`${style.flexRow} ${style.buttonsCol}`} role="cell">
+      кнопки
+    </div>
   </div>
 )
 
 TableExtensionPhone.propTypes = {
-  id: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

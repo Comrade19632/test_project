@@ -34,7 +34,6 @@ const Table = () => {
           extensionPhones.map((extensionPhone) => (
             <TableExtensionPhone
               key={extensionPhone.id}
-              id={extensionPhone.id}
               status={extensionPhone.status}
               type={extensionPhone.type}
               name={extensionPhone.name}
