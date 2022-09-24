@@ -18,3 +18,5 @@ export const toastOnError = (error) => {
     toast.error(JSON.stringify(error))
   }
 }
+
+export const internalApiLoginUrl = (process.env.NODE_ENV === 'production') ? `${window.location.origin}/api/` : 'http://localhost/api/'

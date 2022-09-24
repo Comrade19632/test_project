@@ -1,19 +1,20 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux'
-import thunkMiddleWare from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
-// eslint-disable-next-line 
+import { configureStore } from '@reduxjs/toolkit'
 import { isEmpty } from 'lodash'
-import { login } from './auth/actions'
-import authReducer from './auth/reducers'
 
-const reducers = combineReducers({
-  auth: authReducer,
+import { extensionPhonesSlice } from './extensionPhonesSlice'
+import {AuthSlice, loginThunk} from './authSlice'
+
+const store = configureStore({
+  reducer: {
+    auth: AuthSlice.reducer,
+    [extensionPhonesSlice.reducerPath]: extensionPhonesSlice.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(extensionPhonesSlice.middleware),
 })
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleWare)))
-
 if (!isEmpty(localStorage.getItem('accessToken')) && !isEmpty(localStorage.getItem('refreshToken'))) {
-  store.dispatch(login(localStorage.getItem('accessToken'), localStorage.getItem('refreshToken')))
+  store.dispatch(loginThunk(localStorage.getItem('accessToken'), localStorage.getItem('refreshToken')))
 }
 
 export default store

@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     #
     "corsheaders",
-    "apps.reverse_login"
+    "apps.reverse_proxy_api"
     #
 ]
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router'
-import { loginViaForm } from 'redux/auth/actions'
+import { getTokensAsyncThunk } from 'redux/authSlice'
 import LoginForm from './components/LoginForm'
 import style from './index.module.sass'
 
@@ -18,7 +18,8 @@ const Login = () => {
     return <Navigate to="/" replace />
   }
 
-  const handleLogin = (username, password) => dispatch(loginViaForm(username, password))
+  const handleLogin = (username, password) => {
+    dispatch(getTokensAsyncThunk({username, password}))}
 
   return (
     <div className={style.container}>
