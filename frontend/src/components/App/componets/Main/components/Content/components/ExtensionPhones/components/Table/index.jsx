@@ -22,10 +22,12 @@ const Table = ({clientId}) => {
           extensionPhones.map((extensionPhone) => (
             <TableExtensionPhone
               key={extensionPhone.id}
+              extesionPhoneId={extensionPhone.id}
               status={extensionPhone.status}
               type={extensionPhone.type}
               name={extensionPhone.name}
               label={extensionPhone.label}
+              clientId={clientId}
             />
           ))}
       </div>

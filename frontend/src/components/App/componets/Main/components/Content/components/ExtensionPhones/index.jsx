@@ -4,6 +4,7 @@ import Block from 'components/Block'
 import Loader from 'components/Loader'
 import Table from './components/Table'
 import style from './index.module.sass'
+import AddExtensionPhone from './components/AddExtensionPhone'
 
 const ExtensionPhones = () => {
   const {
@@ -15,7 +16,12 @@ const ExtensionPhones = () => {
   return (
     <div className={style.extensionPhones}>
       <Block>
-        {(user) ? <Table clientId={user.client_id}/> : <Loader className={style.loader}/>}
+        {(user) ? (
+          <>
+            <Table clientId={user.client_id}/>
+            <AddExtensionPhone clientId={user.client_id}/>
+          </>
+        ) : <Loader className={style.loader}/>}
       </Block>
     </div>
   )}
