@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { useDeleteExtensionPhoneMutation } from 'redux/extensionPhonesSlice'
 import style from './index.module.sass'
@@ -6,7 +7,7 @@ import ExpandIcon from './ButtonsIcons/ExpandIcon'
 import DeleteIcon from './ButtonsIcons/DeleteIcon'
 
 const TableExtensionPhone = ({
-  extesionPhoneId,
+  extensionPhoneId,
   clientId,
   status,
   type,
@@ -36,16 +37,16 @@ const TableExtensionPhone = ({
       </div>
       <div className={`${style.flexRow} ${style.buttonsCol}`} role="cell">
         {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-        <a href='/' className={style.expand}><ExpandIcon /></a>
+        <Link to={`/detailed/${extensionPhoneId}`}><ExpandIcon /></Link>
         {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-        <button type="button" onClick={() => deleteExtensionPhone({clientId, extesionPhoneId})} className={style.delete}><DeleteIcon /></button>
+        <button type="button" onClick={() => deleteExtensionPhone({clientId, extensionPhoneId})} className={style.delete}><DeleteIcon /></button>
       </div>
     </div>
   )}
 
 TableExtensionPhone.propTypes = {
   clientId: PropTypes.number.isRequired,
-  extesionPhoneId: PropTypes.number.isRequired,
+  extensionPhoneId: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
