@@ -11,18 +11,18 @@ import style from './index.module.sass'
 const Table = ({clientId}) => {
   const {
     data: extensionPhones,
-    isLoading,
+    isFetching,
   } = useGetExtensionPhonesQuery(clientId)
 
   return (
     <div className={style.table}>
       <div className={style.tableContainer} role="table">
         <TableHead />
-        {(isLoading) ? (<Loader className={style.loader} />) :
+        {(isFetching) ? (<Loader className={style.loader} />) :
           extensionPhones.map((extensionPhone) => (
             <TableExtensionPhone
               key={extensionPhone.id}
-              extesionPhoneId={extensionPhone.id}
+              extensionPhoneId={extensionPhone.id}
               status={extensionPhone.status}
               type={extensionPhone.type}
               name={extensionPhone.name}

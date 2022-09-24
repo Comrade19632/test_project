@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
-import { NavLink  } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import style from './index.module.sass'
 
 const Item = ({ name, icon, link, isSidebarOpened }) => {
