@@ -69,7 +69,11 @@
   .expand
   
   .delete
+    background: inherit
+    border: 0
     margin-left: 20px
+    &:hover
+      cursor: pointer
 
   @media screen and (max-width: $tablet)
     box-sizing: border-box
@@ -78,6 +82,12 @@
 .flexRow
   text-align: left
   padding: 5px 5px
+
+  @media screen and (max-width: $tablet)
+    display: flex
+    justify-content: center
+    align-content: center
+    align-items: center
 
   span
     display: none

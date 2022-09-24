@@ -20,10 +20,17 @@ export const extensionPhonesSlice = createApi({
       providesTags: (result, error, arg) => [{ type: 'ExtensionPhone', id: arg.id }],
     }),
     addNewExtensionPhone: builder.mutation({
-      query: (initialExtensionPhone) => ({
-        url: '/posts',
+      query: ({clientId, formData}) => ({
+        url: `/client/${clientId}/extension/`,
         method: 'POST',
-        body: initialExtensionPhone,
+        data: formData,
+      }),
+      invalidatesTags: ['ExtensionPhone'],
+    }),
+    deleteExtensionPhone: builder.mutation({
+      query: ({clientId, extesionPhoneId}) => ({
+        url: `/client/${clientId}/extension/${extesionPhoneId}`,
+        method: 'DELETE',
       }),
       invalidatesTags: ['ExtensionPhone'],
     }),
@@ -32,13 +39,6 @@ export const extensionPhonesSlice = createApi({
         url: `/client/${clientId}/extension/${extesionPhone.id}`,
         method: 'PATCH',
         body: extesionPhone,
-      }),
-      invalidatesTags: (result, error, arg) => [{ type: 'ExtensionPhone', id: arg.id }],
-    }),
-    deleteExtensionPhone: builder.mutation({
-      query: (clientId, extesionPhoneId) => ({
-        url: `/client/${clientId}/extension/${extesionPhoneId}`,
-        method: 'DELETE',
       }),
       invalidatesTags: (result, error, arg) => [{ type: 'ExtensionPhone', id: arg.id }],
     }),

@@ -4,7 +4,7 @@ import ProtectedRoute from 'components/ProtectedRoute'
 import Main from './componets/Main'
 import Login from './componets/Login'
 
-const Layout = () => (
+const App = () => (
   <div>
     <Routes>
       <Route exact path='/login' element={<Login />} />
@@ -17,5 +17,5 @@ const Layout = () => (
   </div>
 )
 
-export default Layout
+export default App
 

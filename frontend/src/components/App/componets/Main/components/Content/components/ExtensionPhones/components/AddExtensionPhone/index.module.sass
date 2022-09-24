@@ -1,0 +1,27 @@
+@import "components/mixins"
+
+.addExtensionPhone
+    display: flex
+    justify-content: center
+    align-content: center
+    align-items: center
+
+    .button
+        @include button-default
+        background: #5dbc3b
+        width: 140px
+
+        &:hover
+            background: #71dd4a
+
+\:global
+    .ReactModal__Overlay 
+        opacity: 0
+        transition: opacity 200ms ease-in-out
+
+    .ReactModal__Overlay--after-open
+        opacity: 1
+    
+    .ReactModal__Overlay--before-close
+        opacity: 0
+    
