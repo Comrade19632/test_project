@@ -1,30 +1,18 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react'
 import Loader from 'components/Loader'
 
+import { useGetExtensionPhonesQuery } from 'redux/extensionPhonesSlice'
+import PropTypes from 'prop-types'
 import TableHead from './TableHead'
 import TableExtensionPhone from './TableExtensionPhone'
 
 import style from './index.module.sass'
-import useExtensionPhones from '../../hooks/useExtensionPhones'
 
-const Table = () => {
-
+const Table = ({clientId}) => {
   const {
-    user,
-  } = useSelector(state => ({
-    user: state.auth.user,
-  }))
-
-  const {
-    getExtensionPhonesData,
-    extensionPhones,
+    data: extensionPhones,
     isLoading,
-  } = useExtensionPhones()
-
-  useEffect(() => {
-    getExtensionPhonesData(user.client_id)
-  }, [getExtensionPhonesData, user.client_id])
+  } = useGetExtensionPhonesQuery(clientId)
 
   return (
     <div className={style.table}>
@@ -43,6 +31,10 @@ const Table = () => {
       </div>
     </div>
   )
+}
+
+Table.propTypes = {
+  clientId: PropTypes.number.isRequired
 }
 
 export default Table
