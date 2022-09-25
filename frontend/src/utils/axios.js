@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { setAxiosAuthToken, internalApiLoginUrl } from 'utils/Utils'
+import { setAxiosAuthToken, internalApiLoginUrl, loginPageUrl } from 'utils/Utils'
 
 const baseURL = 'https://apiproxy.telphin.ru/api/ver1.0/'
 
@@ -38,7 +38,7 @@ instance.interceptors.response.use((response) => response, (error) => {
   }
 
   // eslint-disable-next-line no-underscore-dangle
-  if (error.response.status === 401 && !originalRequest._retry) {
+  if (window.location.href !== loginPageUrl && error.response.status === 401 && !originalRequest._retry) {
 
     if (isRefreshing) {
       return new Promise((resolve, reject) => {

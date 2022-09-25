@@ -1,4 +1,5 @@
 import axios from 'utils/axios'
+import { toastOnError } from 'utils/Utils'
 
 const axiosBaseQuery = () =>
   async ({ url, method, data, params }) => {
@@ -7,6 +8,7 @@ const axiosBaseQuery = () =>
       return { data: result.data }
     } catch (axiosError) {
       const err = axiosError
+      toastOnError(err)
       return {
         error: {
           status: err.response?.status,

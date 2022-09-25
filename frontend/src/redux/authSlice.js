@@ -2,8 +2,12 @@ import {
   createSlice,
   createAsyncThunk,
 } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import axios from 'utils/axios'
-import { internalApiLoginUrl, setAxiosAuthToken } from 'utils/Utils'
+import { internalApiLoginUrl, setAxiosAuthToken, toastOnError } from 'utils/Utils'
+
+toast.configure()
 
 const initialState = {
   isAuthenticated: false,
@@ -47,10 +51,15 @@ export const loginThunk = (accessToken, refreshToken) => (dispatch) => {
 
 export const getTokensAsyncThunk = createAsyncThunk(
   'auth/getTokens',
-  async (data, thunkAPI) => {
-    const response = await axios.post(`${internalApiLoginUrl}token/`, data)
-    const { access_token: accessToken, refresh_token: refreshToken } = response.data
-    thunkAPI.dispatch(loginThunk(accessToken, refreshToken))
+  (data, thunkAPI) => {
+    axios.post(`${internalApiLoginUrl}token/`, data)
+      .then((response) => { 
+        const { access_token: accessToken, refresh_token: refreshToken } = response.data
+        thunkAPI.dispatch(loginThunk(accessToken, refreshToken))
+        toast.success('Успешный вход')
+      }).catch((error) => {
+        toastOnError(error)
+      })
   }
 )
 
@@ -59,4 +68,5 @@ export const logoutThunk = () => (dispatch) => {
   localStorage.removeItem('accessToken')
   localStorage.removeItem('refreshToken')
   dispatch(logout())
+  toast.success('Успешный выход')
 }

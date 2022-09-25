@@ -5,8 +5,9 @@ import PropTypes from 'prop-types'
 import { useAddNewExtensionPhoneMutation } from 'redux/extensionPhonesSlice'
 import style from './index.module.sass'
 
-const Modal = ({modalIsOpen, toggleModal, clientId}) => {
+const Modal = ({ modalIsOpen, toggleModal, clientId }) => {
   const [addNewExtensionPhone] = useAddNewExtensionPhoneMutation()
+
   return (
     <ReactModal ariaHideApp={false} className={style.modal} onRequestClose={() => toggleModal(false)} isOpen={modalIsOpen} closeTimeoutMS={200}>
       <div className={style.form}>
@@ -14,7 +15,7 @@ const Modal = ({modalIsOpen, toggleModal, clientId}) => {
           initialValues={{ status: 'active', type: 'phone', name: '', label: '' }}
           onSubmit={(formData, { setSubmitting }) => {
             setSubmitting(false)
-            addNewExtensionPhone({clientId, formData})
+            addNewExtensionPhone({ clientId, formData })
             toggleModal(false)
           }}
         >
@@ -32,7 +33,7 @@ const Modal = ({modalIsOpen, toggleModal, clientId}) => {
                 <option value="conference">Конференция</option>
               </Field>
               <Field type="digits" name="name" placeholder="Имя" />
-              <Field type="text" name="label" placeholder="Название"/>
+              <Field type="text" name="label" placeholder="Название" />
               <button type="submit" disabled={isSubmitting}>
                 Добавить
               </button>
@@ -41,7 +42,8 @@ const Modal = ({modalIsOpen, toggleModal, clientId}) => {
         </Formik>
       </div>
     </ReactModal >
-  )}
+  )
+}
 
 Modal.propTypes = {
   modalIsOpen: PropTypes.bool.isRequired,
